@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Compus Service (User)</title>
+    {% load static %}
+    <!-- The line above tells Django to be ready to listen for static files -->
+    <link rel='stylesheet' href='{% static "bootstrap/css/bootstrap.css" %}' media='screen' title='no title' charset='utf-8'>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <!-- Put the static files in the static folder inside your app. -->
+    <!-- Django collects files within all static folders and puts them within a single folder -->
+</head>
+
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-text">
+            <a class="navbar-brand text-primary">Campus Service - Add User Menu</a>
+        </div>
+        <p class="navbar-text navbar-right">
+            <a class="btn btn-primary" href="/dashboard" role="button">Home</a>
+            <a class="btn btn-primary" href="/logout" role="button">Logout</a>
+        </p>
+    </div>
+</nav>
+
+<div class="container">
+    <div id="flash_messages">
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        <br> {% endif %}
+    </div>
+
+    <div id="main">
+        <fieldset>
+            <legend>
+                <h3>Enter your new user information.</h3>
+            </legend>
+            <form action="/addUser" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputCampusID">Campus ID:</label>
+                    <input class="form-control" type='text' name='inputCampusID'>
+                </div>
+                <div class="form-group">
+                    <label for="inputLastName">Last Name:</label>
+                    <input class="form-control" type='text' name='inputLastName'>
+                </div>
+                <div class="form-group">
+                    <label for="inputFirstName">First Name:</label>
+                    <input class="form-control" type='text' name='inputFirstName'>
+                </div>
+                <div class="form-group">
+                    <label for="inputDateBirth">Date of birth:</label>
+                    <input class="form-control" type='date' name='inputDateBirth'>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Home Address:</label>
+                    <input class="form-control" type='text' name='inputAddress'>
+                </div>
+                <div class="form-group">
+                    <label for="inputPhone">Phone Number:</label>
+                    <input class="form-control" type='text' name='inputPhone'>
+                </div>
+                <div class="form-group">
+                    <label for="inputExtNum">Office Extension Number:</label>
+                    <input class="form-control" type='text' name='inputExtNum'>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email Address:</label>
+                    <input class="form-control" type='text' name='inputEmail'>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword1">Password:</label>
+                    <input class="form-control" type='password' name='inputPassword1'>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword2">Confirm Password:</label>
+                    <input class="form-control" type='password' name='inputPassword2'>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </fieldset>
+    </div>
+
+</div>
+
+</html>

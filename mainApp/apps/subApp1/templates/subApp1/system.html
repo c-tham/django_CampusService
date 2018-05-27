@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Compus Service (System Setting)</title>
+    {% load static %}
+    <!-- The line above tells Django to be ready to listen for static files -->
+    <link rel='stylesheet' href='{% static "bootstrap/css/bootstrap.css" %}' media='screen' title='no title' charset='utf-8'>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <!-- Put the static files in the static folder inside your app. -->
+    <!-- Django collects files within all static folders and puts them within a single folder -->
+</head>
+
+<nav class="navbar navbar-default navbar-static-top ">
+    <div class="container">
+        <div class="navbar-text ">
+            <a class="navbar-brand ">Campus Service - System Setting</a>
+        </div>
+        <p class="navbar-text navbar-right">
+            <a class="btn btn-primary" href="/dashboard" role="button">Home</a>
+            <a class="btn btn-primary" href="/user" role="button">Add User</a>
+            <a class="btn btn-primary" href="/logout" role="button">Logout</a>
+        </p>
+    </div>
+</nav>
+
+<div class="container">
+    <div id="flash_messages">
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        <br> {% endif %}
+    </div>
+
+    <div id="main">
+        <fieldset>
+            <h3>List of all catalog type for campus user.</h3>
+            <table class="table table-hover">
+                <tr>
+                    <th>No</th>
+                    <th>Description</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Action</th>
+                </tr>
+                {% for all1 in allCatalogType%}
+                <tr>
+                    <td>{{all1.id}}</td>
+                    <td>{{all1.name}}</td>
+                    <td>{{all1.createdAt}}</td>
+                    <td>{{all1.updatedAt}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="" role="button">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </fieldset>
+    </div>
+
+</div>
+
+</html>
